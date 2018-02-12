@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Utenti_PalestraModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="RapportoClienti">
+    <Key>
+      <PropertyRef Name="ID_Tessera" />
+    </Key>
+    <Property Name="ID_Tessera" Type="nchar" MaxLength="8" Nullable="false" />
+    <Property Name="Data_Iscrizione" Type="date" />
+    <Property Name="Data_Pagamento" Type="date" />
+    <Property Name="Data_Scadenza" Type="date" />
+    <Property Name="Data_Certificato" Type="date" />
+    <Property Name="Data_Scadenza_Certificato" Type="date" />
+    <Property Name="Note" Type="text" />
+    <Property Name="Abilitato" Type="bit" Nullable="false" />
+    <Property Name="Tipo_Iscrizione" Type="nchar" MaxLength="26" />
+    <Property Name="Extra" Type="nchar" MaxLength="7" />
+    <Property Name="N_EntrateRimanenti" Type="int" />
+    <Property Name="Data_Annuale" Type="date" />
+    <Property Name="Data_AnnualeScadenza" Type="date" />
+    <Property Name="Data_Disattivazione" Type="date" />
+    <Property Name="Codice_disattivazione" Type="int" />
+  </EntityType>
+  <EntityType Name="Utenti">
+    <Key>
+      <PropertyRef Name="ID_Tessera" />
+    </Key>
+    <Property Name="ID_Tessera" Type="nchar" MaxLength="8" Nullable="false" />
+    <Property Name="Nome" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="Cognome" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="Indirizzo" Type="text" Nullable="false" />
+    <Property Name="Citta" Type="nchar" MaxLength="25" Nullable="false" />
+    <Property Name="Provincia" Type="nchar" MaxLength="5" />
+    <Property Name="Telefono" Type="nchar" MaxLength="11" Nullable="false" />
+    <Property Name="Pubblicita" Type="text" />
+  </EntityType>
+  <Association Name="FK__RapportoC__ID_Te__25869641">
+    <End Role="Utenti" Type="Self.Utenti" Multiplicity="1" />
+    <End Role="RapportoClienti" Type="Self.RapportoClienti" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Utenti">
+        <PropertyRef Name="ID_Tessera" />
+      </Principal>
+      <Dependent Role="RapportoClienti">
+        <PropertyRef Name="ID_Tessera" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Utenti_PalestraModelStoreContainer">
+    <EntitySet Name="RapportoClienti" EntityType="Self.RapportoClienti" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Utenti" EntityType="Self.Utenti" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__RapportoC__ID_Te__25869641" Association="Self.FK__RapportoC__ID_Te__25869641">
+      <End Role="Utenti" EntitySet="Utenti" />
+      <End Role="RapportoClienti" EntitySet="RapportoClienti" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

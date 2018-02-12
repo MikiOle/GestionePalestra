@@ -1,0 +1,27 @@
+﻿<Window x:Class="PalestraTest.GestioneIngressi"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PalestraTest"
+        mc:Ignorable="d"
+        Title="GestioneIngressi" Height="900" Width="1200" >
+    <Grid Background="#FF0D242A">
+        <Grid x:Name="gridDettagliEntrata" HorizontalAlignment="Left" Height="869" VerticalAlignment="Top" Width="1192">
+            <Label x:Name="lblBenvenuto" Content="" HorizontalAlignment="Center" Margin="10,58,10,0" VerticalAlignment="Top" Height="168" Width="1172" FontSize="60" FontWeight="Bold" BorderThickness="0,0,0,3" Background="White"/>
+            <Label x:Name="lblDettagli" Content="" HorizontalAlignment="Left" Margin="10,276,0,0" VerticalAlignment="Top" Height="462" Width="1172" FontSize="36" Background="White"/>
+            <Label x:Name="label" Foreground="White" Content="Gestione Ingressi&#xD;&#xA;" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="48" Width="213" FontSize="24" FontWeight="Bold"/>
+            <Label x:Name="label1" Foreground="White" Content="Dettagli utente" HorizontalAlignment="Left" Margin="10,231,0,0" VerticalAlignment="Top" Height="40" Width="1172" FontSize="20" FontWeight="Bold"/>
+            <Image x:Name="imgCompleanno" HorizontalAlignment="Left" Height="448" VerticalAlignment="Top" Width="210" Source="Immagini/compleanno.jpeg" Margin="965,316,0,0" Visibility="Hidden"/>
+        </Grid>
+        <Grid x:Name="gridBenvenuto" HorizontalAlignment="Left" Height="510" Margin="324,72,0,0" VerticalAlignment="Top" Width="572" Visibility="Hidden" >
+            <Image x:Name="image" HorizontalAlignment="Left" Height="518" VerticalAlignment="Top" Width="572" Source="Immagini/logopal.jpg"/>
+            <Label x:Name="label2" Content="Benvenuto nella palestra Village Gym!" Margin="-162,523,-134,-93" VerticalAlignment="Top" Height="80" Foreground="White" FontSize="48" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <Label x:Name="label2_Copy" Content="Passa la tessera allo scanner per entrare..." Margin="-55,603,-35,-173" VerticalAlignment="Top" Height="80" Foreground="White" FontSize="36" HorizontalAlignment="Center"/>
+            <Label x:Name="lblPalestra" Content="Palestra VILLAGE GYM&#xA;p.zza indipendenza n.20&#xA;Borello di Cesena&#xD;&#xA;Tel: 0547 37 25 35" HorizontalAlignment="Left" Margin="676,693,-288,-279" Foreground="White" VerticalAlignment="Top" Width="184" Height="96" FontSize="16"/>
+        </Grid>
+
+
+
+    </Grid>
+</Window>

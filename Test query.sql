@@ -1,0 +1,1 @@
+﻿UPDATE RapportoClienti SET Abilitato=0 WHERE N_EntrateRimanenti = 0 OR DATEDIFF(DAY, Data_Scadenza, GETDATE()) > 0 

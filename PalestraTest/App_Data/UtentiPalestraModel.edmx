@@ -1,0 +1,322 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="UtentiPalestraModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Casi_disattivazione_abbonamento">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="motivo" Type="text" />
+        </EntityType>
+        <EntityType Name="PrezziAbbonamenti">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="titolo" Type="text" />
+          <Property Name="prezzo" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="is_periodico" Type="bit" Nullable="false" />
+          <Property Name="validita_giorni" Type="int" />
+          <Property Name="validita_mesi" Type="int" />
+        </EntityType>
+        <EntityType Name="RapportoClienti">
+          <Key>
+            <PropertyRef Name="ID_Tessera" />
+          </Key>
+          <Property Name="ID_Tessera" Type="nchar" MaxLength="8" Nullable="false" />
+          <Property Name="Data_Iscrizione" Type="date" />
+          <Property Name="Data_Pagamento" Type="date" />
+          <Property Name="Data_Scadenza" Type="date" />
+          <Property Name="Data_Certificato" Type="date" />
+          <Property Name="Data_Scadenza_Certificato" Type="date" />
+          <Property Name="Note" Type="text" />
+          <Property Name="Abilitato" Type="bit" Nullable="false" />
+          <Property Name="Tipo_Iscrizione" Type="int" />
+          <Property Name="Extra" Type="nchar" MaxLength="7" />
+          <Property Name="N_EntrateRimanenti" Type="int" />
+          <Property Name="Data_Annuale" Type="date" />
+          <Property Name="Data_AnnualeScadenza" Type="date" />
+          <Property Name="Data_Disattivazione" Type="date" />
+          <Property Name="Codice_disattivazione" Type="int" />
+        </EntityType>
+        <EntityType Name="Utenti">
+          <Key>
+            <PropertyRef Name="ID_Tessera" />
+          </Key>
+          <Property Name="ID_Tessera" Type="nchar" MaxLength="8" Nullable="false" />
+          <Property Name="Nome" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="Cognome" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="Indirizzo" Type="text" Nullable="false" />
+          <Property Name="Citta" Type="nchar" MaxLength="25" Nullable="false" />
+          <Property Name="Provincia" Type="nchar" MaxLength="5" />
+          <Property Name="Telefono" Type="nchar" MaxLength="11" Nullable="false" />
+          <Property Name="Pubblicita" Type="text" />
+          <Property Name="DataNascita" Type="date" />
+          <Property Name="FesteggiaCompleanno" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__RapportoC__Codic__36B12243">
+          <End Role="Casi_disattivazione_abbonamento" Type="Self.Casi_disattivazione_abbonamento" Multiplicity="0..1" />
+          <End Role="RapportoClienti" Type="Self.RapportoClienti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Casi_disattivazione_abbonamento">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RapportoClienti">
+              <PropertyRef Name="Codice_disattivazione" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RapportoC__ID_Te__47DBAE45">
+          <End Role="Utenti" Type="Self.Utenti" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RapportoClienti" Type="Self.RapportoClienti" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Utenti">
+              <PropertyRef Name="ID_Tessera" />
+            </Principal>
+            <Dependent Role="RapportoClienti">
+              <PropertyRef Name="ID_Tessera" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RapportoC__Tipo___4F47C5E3">
+          <End Role="PrezziAbbonamenti" Type="Self.PrezziAbbonamenti" Multiplicity="0..1" />
+          <End Role="RapportoClienti" Type="Self.RapportoClienti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PrezziAbbonamenti">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RapportoClienti">
+              <PropertyRef Name="Tipo_Iscrizione" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="UtentiPalestraModelStoreContainer">
+          <EntitySet Name="Casi_disattivazione_abbonamento" EntityType="Self.Casi_disattivazione_abbonamento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PrezziAbbonamenti" EntityType="Self.PrezziAbbonamenti" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RapportoClienti" EntityType="Self.RapportoClienti" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Utenti" EntityType="Self.Utenti" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__RapportoC__Codic__36B12243" Association="Self.FK__RapportoC__Codic__36B12243">
+            <End Role="Casi_disattivazione_abbonamento" EntitySet="Casi_disattivazione_abbonamento" />
+            <End Role="RapportoClienti" EntitySet="RapportoClienti" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RapportoC__ID_Te__47DBAE45" Association="Self.FK__RapportoC__ID_Te__47DBAE45">
+            <End Role="Utenti" EntitySet="Utenti" />
+            <End Role="RapportoClienti" EntitySet="RapportoClienti" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RapportoC__Tipo___4F47C5E3" Association="Self.FK__RapportoC__Tipo___4F47C5E3">
+            <End Role="PrezziAbbonamenti" EntitySet="PrezziAbbonamenti" />
+            <End Role="RapportoClienti" EntitySet="RapportoClienti" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="UtentiPalestraModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="UtentiPalestraEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Casi_disattivazione_abbonamento" EntityType="UtentiPalestraModel.Casi_disattivazione_abbonamento" />
+          <EntitySet Name="PrezziAbbonamenti" EntityType="UtentiPalestraModel.PrezziAbbonamenti" />
+          <EntitySet Name="RapportoClienti" EntityType="UtentiPalestraModel.RapportoCliente" />
+          <EntitySet Name="Utenti" EntityType="UtentiPalestraModel.Utente" />
+          <AssociationSet Name="FK__RapportoC__Codic__36B12243" Association="UtentiPalestraModel.FK__RapportoC__Codic__36B12243">
+            <End Role="Casi_disattivazione_abbonamento" EntitySet="Casi_disattivazione_abbonamento" />
+            <End Role="RapportoClienti" EntitySet="RapportoClienti" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RapportoC__Tipo___2739D489" Association="UtentiPalestraModel.FK__RapportoC__Tipo___2739D489">
+            <End Role="PrezziAbbonamenti" EntitySet="PrezziAbbonamenti" />
+            <End Role="RapportoClienti" EntitySet="RapportoClienti" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RapportoC__ID_Te__47DBAE45" Association="UtentiPalestraModel.FK__RapportoC__ID_Te__47DBAE45">
+            <End Role="Utenti" EntitySet="Utenti" />
+            <End Role="RapportoClienti" EntitySet="RapportoClienti" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Casi_disattivazione_abbonamento">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="motivo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="RapportoClienti" Relationship="UtentiPalestraModel.FK__RapportoC__Codic__36B12243" FromRole="Casi_disattivazione_abbonamento" ToRole="RapportoClienti" />
+        </EntityType>
+        <EntityType Name="PrezziAbbonamenti">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="titolo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="prezzo" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="RapportoClienti" Relationship="UtentiPalestraModel.FK__RapportoC__Tipo___2739D489" FromRole="PrezziAbbonamenti" ToRole="RapportoClienti" />
+          <Property Name="is_periodico" Type="Boolean" Nullable="false" />
+          <Property Name="validita_giorni" Type="Int32" />
+          <Property Name="validita_mesi" Type="Int32" />
+        </EntityType>
+        <EntityType Name="RapportoCliente">
+          <Key>
+            <PropertyRef Name="ID_Tessera" />
+          </Key>
+          <Property Name="ID_Tessera" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="true" />
+          <Property Name="Data_Iscrizione" Type="DateTime" Precision="0" />
+          <Property Name="Data_Pagamento" Type="DateTime" Precision="0" />
+          <Property Name="Data_Scadenza" Type="DateTime" Precision="0" />
+          <Property Name="Data_Certificato" Type="DateTime" Precision="0" />
+          <Property Name="Data_Scadenza_Certificato" Type="DateTime" Precision="0" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Abilitato" Type="Boolean" Nullable="false" />
+          <Property Name="Tipo_Iscrizione" Type="Int32" />
+          <Property Name="Extra" Type="String" MaxLength="7" FixedLength="true" Unicode="true" />
+          <Property Name="N_EntrateRimanenti" Type="Int32" />
+          <Property Name="Data_Annuale" Type="DateTime" Precision="0" />
+          <Property Name="Data_AnnualeScadenza" Type="DateTime" Precision="0" />
+          <Property Name="Data_Disattivazione" Type="DateTime" Precision="0" />
+          <Property Name="Codice_disattivazione" Type="Int32" />
+          <NavigationProperty Name="Casi_disattivazione_abbonamento" Relationship="UtentiPalestraModel.FK__RapportoC__Codic__36B12243" FromRole="RapportoClienti" ToRole="Casi_disattivazione_abbonamento" />
+          <NavigationProperty Name="PrezziAbbonamenti" Relationship="UtentiPalestraModel.FK__RapportoC__Tipo___2739D489" FromRole="RapportoClienti" ToRole="PrezziAbbonamenti" />
+          <NavigationProperty Name="Utenti" Relationship="UtentiPalestraModel.FK__RapportoC__ID_Te__47DBAE45" FromRole="RapportoClienti" ToRole="Utenti" />
+        </EntityType>
+        <EntityType Name="Utente">
+          <Key>
+            <PropertyRef Name="ID_Tessera" />
+          </Key>
+          <Property Name="ID_Tessera" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="true" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Cognome" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Indirizzo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Citta" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="true" />
+          <Property Name="Provincia" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+          <Property Name="Telefono" Type="String" Nullable="false" MaxLength="11" FixedLength="true" Unicode="true" />
+          <Property Name="Pubblicita" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DataNascita" Type="DateTime" Precision="0" />
+          <Property Name="FesteggiaCompleanno" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="RapportoClienti" Relationship="UtentiPalestraModel.FK__RapportoC__ID_Te__47DBAE45" FromRole="Utenti" ToRole="RapportoClienti" />
+        </EntityType>
+        <Association Name="FK__RapportoC__Codic__36B12243">
+          <End Type="UtentiPalestraModel.Casi_disattivazione_abbonamento" Role="Casi_disattivazione_abbonamento" Multiplicity="0..1" />
+          <End Type="UtentiPalestraModel.RapportoCliente" Role="RapportoClienti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Casi_disattivazione_abbonamento">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RapportoClienti">
+              <PropertyRef Name="Codice_disattivazione" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RapportoC__Tipo___2739D489">
+          <End Type="UtentiPalestraModel.PrezziAbbonamenti" Role="PrezziAbbonamenti" Multiplicity="0..1" />
+          <End Type="UtentiPalestraModel.RapportoCliente" Role="RapportoClienti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PrezziAbbonamenti">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RapportoClienti">
+              <PropertyRef Name="Tipo_Iscrizione" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RapportoC__ID_Te__47DBAE45">
+          <End Type="UtentiPalestraModel.Utente" Role="Utenti" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="UtentiPalestraModel.RapportoCliente" Role="RapportoClienti" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Utenti">
+              <PropertyRef Name="ID_Tessera" />
+            </Principal>
+            <Dependent Role="RapportoClienti">
+              <PropertyRef Name="ID_Tessera" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="UtentiPalestraModelStoreContainer" CdmEntityContainer="UtentiPalestraEntities">
+          <EntitySetMapping Name="Casi_disattivazione_abbonamento">
+            <EntityTypeMapping TypeName="UtentiPalestraModel.Casi_disattivazione_abbonamento">
+              <MappingFragment StoreEntitySet="Casi_disattivazione_abbonamento">
+                <ScalarProperty Name="motivo" ColumnName="motivo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PrezziAbbonamenti">
+            <EntityTypeMapping TypeName="UtentiPalestraModel.PrezziAbbonamenti">
+              <MappingFragment StoreEntitySet="PrezziAbbonamenti">
+                <ScalarProperty Name="validita_mesi" ColumnName="validita_mesi" />
+                <ScalarProperty Name="validita_giorni" ColumnName="validita_giorni" />
+                <ScalarProperty Name="is_periodico" ColumnName="is_periodico" />
+                <ScalarProperty Name="prezzo" ColumnName="prezzo" />
+                <ScalarProperty Name="titolo" ColumnName="titolo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RapportoClienti">
+            <EntityTypeMapping TypeName="UtentiPalestraModel.RapportoCliente">
+              <MappingFragment StoreEntitySet="RapportoClienti">
+                <ScalarProperty Name="Codice_disattivazione" ColumnName="Codice_disattivazione" />
+                <ScalarProperty Name="Data_Disattivazione" ColumnName="Data_Disattivazione" />
+                <ScalarProperty Name="Data_AnnualeScadenza" ColumnName="Data_AnnualeScadenza" />
+                <ScalarProperty Name="Data_Annuale" ColumnName="Data_Annuale" />
+                <ScalarProperty Name="N_EntrateRimanenti" ColumnName="N_EntrateRimanenti" />
+                <ScalarProperty Name="Extra" ColumnName="Extra" />
+                <ScalarProperty Name="Tipo_Iscrizione" ColumnName="Tipo_Iscrizione" />
+                <ScalarProperty Name="Abilitato" ColumnName="Abilitato" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Data_Scadenza_Certificato" ColumnName="Data_Scadenza_Certificato" />
+                <ScalarProperty Name="Data_Certificato" ColumnName="Data_Certificato" />
+                <ScalarProperty Name="Data_Scadenza" ColumnName="Data_Scadenza" />
+                <ScalarProperty Name="Data_Pagamento" ColumnName="Data_Pagamento" />
+                <ScalarProperty Name="Data_Iscrizione" ColumnName="Data_Iscrizione" />
+                <ScalarProperty Name="ID_Tessera" ColumnName="ID_Tessera" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Utenti">
+            <EntityTypeMapping TypeName="UtentiPalestraModel.Utente">
+              <MappingFragment StoreEntitySet="Utenti">
+                <ScalarProperty Name="FesteggiaCompleanno" ColumnName="FesteggiaCompleanno" />
+                <ScalarProperty Name="DataNascita" ColumnName="DataNascita" />
+                <ScalarProperty Name="Pubblicita" ColumnName="Pubblicita" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+                <ScalarProperty Name="Citta" ColumnName="Citta" />
+                <ScalarProperty Name="Indirizzo" ColumnName="Indirizzo" />
+                <ScalarProperty Name="Cognome" ColumnName="Cognome" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="ID_Tessera" ColumnName="ID_Tessera" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Nessuno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

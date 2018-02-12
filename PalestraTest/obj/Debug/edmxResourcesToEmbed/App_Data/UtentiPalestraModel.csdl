@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="UtentiPalestraModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="UtentiPalestraEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Casi_disattivazione_abbonamento" EntityType="UtentiPalestraModel.Casi_disattivazione_abbonamento" />
+    <EntitySet Name="PrezziAbbonamenti" EntityType="UtentiPalestraModel.PrezziAbbonamenti" />
+    <EntitySet Name="RapportoClienti" EntityType="UtentiPalestraModel.RapportoCliente" />
+    <EntitySet Name="Utenti" EntityType="UtentiPalestraModel.Utente" />
+    <AssociationSet Name="FK__RapportoC__Codic__36B12243" Association="UtentiPalestraModel.FK__RapportoC__Codic__36B12243">
+      <End Role="Casi_disattivazione_abbonamento" EntitySet="Casi_disattivazione_abbonamento" />
+      <End Role="RapportoClienti" EntitySet="RapportoClienti" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RapportoC__Tipo___2739D489" Association="UtentiPalestraModel.FK__RapportoC__Tipo___2739D489">
+      <End Role="PrezziAbbonamenti" EntitySet="PrezziAbbonamenti" />
+      <End Role="RapportoClienti" EntitySet="RapportoClienti" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RapportoC__ID_Te__47DBAE45" Association="UtentiPalestraModel.FK__RapportoC__ID_Te__47DBAE45">
+      <End Role="Utenti" EntitySet="Utenti" />
+      <End Role="RapportoClienti" EntitySet="RapportoClienti" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Casi_disattivazione_abbonamento">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="motivo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="RapportoClienti" Relationship="UtentiPalestraModel.FK__RapportoC__Codic__36B12243" FromRole="Casi_disattivazione_abbonamento" ToRole="RapportoClienti" />
+  </EntityType>
+  <EntityType Name="PrezziAbbonamenti">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="titolo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="prezzo" Type="Decimal" Precision="10" Scale="2" />
+    <NavigationProperty Name="RapportoClienti" Relationship="UtentiPalestraModel.FK__RapportoC__Tipo___2739D489" FromRole="PrezziAbbonamenti" ToRole="RapportoClienti" />
+    <Property Name="is_periodico" Type="Boolean" Nullable="false" />
+    <Property Name="validita_giorni" Type="Int32" />
+    <Property Name="validita_mesi" Type="Int32" />
+  </EntityType>
+  <EntityType Name="RapportoCliente">
+    <Key>
+      <PropertyRef Name="ID_Tessera" />
+    </Key>
+    <Property Name="ID_Tessera" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="true" />
+    <Property Name="Data_Iscrizione" Type="DateTime" Precision="0" />
+    <Property Name="Data_Pagamento" Type="DateTime" Precision="0" />
+    <Property Name="Data_Scadenza" Type="DateTime" Precision="0" />
+    <Property Name="Data_Certificato" Type="DateTime" Precision="0" />
+    <Property Name="Data_Scadenza_Certificato" Type="DateTime" Precision="0" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Abilitato" Type="Boolean" Nullable="false" />
+    <Property Name="Tipo_Iscrizione" Type="Int32" />
+    <Property Name="Extra" Type="String" MaxLength="7" FixedLength="true" Unicode="true" />
+    <Property Name="N_EntrateRimanenti" Type="Int32" />
+    <Property Name="Data_Annuale" Type="DateTime" Precision="0" />
+    <Property Name="Data_AnnualeScadenza" Type="DateTime" Precision="0" />
+    <Property Name="Data_Disattivazione" Type="DateTime" Precision="0" />
+    <Property Name="Codice_disattivazione" Type="Int32" />
+    <NavigationProperty Name="Casi_disattivazione_abbonamento" Relationship="UtentiPalestraModel.FK__RapportoC__Codic__36B12243" FromRole="RapportoClienti" ToRole="Casi_disattivazione_abbonamento" />
+    <NavigationProperty Name="PrezziAbbonamenti" Relationship="UtentiPalestraModel.FK__RapportoC__Tipo___2739D489" FromRole="RapportoClienti" ToRole="PrezziAbbonamenti" />
+    <NavigationProperty Name="Utenti" Relationship="UtentiPalestraModel.FK__RapportoC__ID_Te__47DBAE45" FromRole="RapportoClienti" ToRole="Utenti" />
+  </EntityType>
+  <EntityType Name="Utente">
+    <Key>
+      <PropertyRef Name="ID_Tessera" />
+    </Key>
+    <Property Name="ID_Tessera" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="true" />
+    <Property Name="Nome" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="Cognome" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="Indirizzo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Citta" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="true" />
+    <Property Name="Provincia" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+    <Property Name="Telefono" Type="String" Nullable="false" MaxLength="11" FixedLength="true" Unicode="true" />
+    <Property Name="Pubblicita" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="DataNascita" Type="DateTime" Precision="0" />
+    <Property Name="FesteggiaCompleanno" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="RapportoClienti" Relationship="UtentiPalestraModel.FK__RapportoC__ID_Te__47DBAE45" FromRole="Utenti" ToRole="RapportoClienti" />
+  </EntityType>
+  <Association Name="FK__RapportoC__Codic__36B12243">
+    <End Type="UtentiPalestraModel.Casi_disattivazione_abbonamento" Role="Casi_disattivazione_abbonamento" Multiplicity="0..1" />
+    <End Type="UtentiPalestraModel.RapportoCliente" Role="RapportoClienti" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Casi_disattivazione_abbonamento">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RapportoClienti">
+        <PropertyRef Name="Codice_disattivazione" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RapportoC__Tipo___2739D489">
+    <End Type="UtentiPalestraModel.PrezziAbbonamenti" Role="PrezziAbbonamenti" Multiplicity="0..1" />
+    <End Type="UtentiPalestraModel.RapportoCliente" Role="RapportoClienti" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PrezziAbbonamenti">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RapportoClienti">
+        <PropertyRef Name="Tipo_Iscrizione" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RapportoC__ID_Te__47DBAE45">
+    <End Type="UtentiPalestraModel.Utente" Role="Utenti" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="UtentiPalestraModel.RapportoCliente" Role="RapportoClienti" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Utenti">
+        <PropertyRef Name="ID_Tessera" />
+      </Principal>
+      <Dependent Role="RapportoClienti">
+        <PropertyRef Name="ID_Tessera" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

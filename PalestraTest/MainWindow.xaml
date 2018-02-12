@@ -1,0 +1,144 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PalestraTest"
+        xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit" x:Class="PalestraTest.MainWindow"
+        mc:Ignorable="d"
+        Title="Gestione palestra" Icon="/Immagini/Icon.ico" Height="709.705" Width="1007.671" Loaded="Window_Loaded" KeyDown="Window_KeyDown">
+    <Window.Resources>
+
+    </Window.Resources>
+    <Grid>
+        <TabControl x:Name="Menu" HorizontalAlignment="Left" Height="663" Margin="10,10,0,0" VerticalAlignment="Top" Width="984">
+            <TabItem x:Name="tabUtenti" Header="Utenti">
+                <Grid Background="#FFE5E5E5" Margin="10,-4,-16,4">
+                    <DataGrid x:Name="dtUtenti" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="611" Width="663" PreviewMouseDoubleClick="dtUtenti_PreviewMouseDoubleClick" />
+                    <GroupBox x:Name="grpControllo" Header="Controlli" HorizontalAlignment="Left" Margin="678,10,0,0" VerticalAlignment="Top" Height="288" Width="286">
+                        <Grid HorizontalAlignment="Left" Height="261" Margin="10,0,-2,0" VerticalAlignment="Top" Width="266">
+                            <Button x:Name="btnControllaAbbonamenti" Content="Controlla abbonamenti" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="255" Height="52" Click="btnControllaAbbonamenti_Click"/>
+                            <Label x:Name="label2" Content="Il controllo abbonamenti disabilita gli utenti&#xA;che:&#xA;●    hanno l'abbonamento scaduto.&#xA;●    hanno terminato le entrate previste.&#xA;●    hanno l'iscrizione annuale scaduta.&#xA;●    hanno la visita medica scaduta.&#xA;●    hanno dei debiti in sospeso.&#xA;●    non hanno alcun iscrizione attiva.&#xA;●    hanno 6 mesi trascorsi dal rinnovo dell &#xA;      abbonamento a lezioni.&#xA;" HorizontalAlignment="Left" Margin="0,62,0,0" VerticalAlignment="Top" Height="189" Width="245"/>
+                        </Grid>
+                    </GroupBox>
+                    <Image x:Name="imgLogo" HorizontalAlignment="Left" Height="144" Margin="820,441,0,0" VerticalAlignment="Top" Width="141" Source="Immagini/logopal.jpg"/>
+                    <Label x:Name="lblPalestra" Content="Palestra VILLAGE GYM&#xA;p.zza indipendenza n.20&#xA;Borello di Cesena" HorizontalAlignment="Left" Margin="818,561,0,0" VerticalAlignment="Top" Width="146" Height="60" FontWeight="Bold" FontStyle="Italic"/>
+                    <Button x:Name="btnApriTornello" Content="Apri tornello" HorizontalAlignment="Left" Margin="678,303,0,0" VerticalAlignment="Top" Width="286" Height="91" Click="btnApriTornello_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tabInserisci" Header="Dati utente"  >
+                <Grid x:Name="grdInserisci" Background="#FFE5E5E5" >
+                    <GroupBox x:Name="dati_utenti" Header="Dati utente" HorizontalAlignment="Left" Margin="10,105,0,0" VerticalAlignment="Top" Height="256" Width="610">
+                        <Grid HorizontalAlignment="Left" Height="243" Margin="4,-6,-2,-3" VerticalAlignment="Top" Width="596">
+                            <Label x:Name="lblID" Content="ID" HorizontalAlignment="Left" Margin="10,16,0,0" VerticalAlignment="Top" Width="26"/>
+                            <Label x:Name="lblNome" Content="Nome" HorizontalAlignment="Left" Margin="10,79,0,0" VerticalAlignment="Top" Width="45"/>
+                            <Label x:Name="lblCognome" Content="Cognome" HorizontalAlignment="Left" Margin="198,79,0,0" VerticalAlignment="Top" Width="63"/>
+                            <Label x:Name="lblIndirizzo" Content="Indirizzo" HorizontalAlignment="Left" Margin="10,119,0,0" VerticalAlignment="Top" Width="56"/>
+                            <Label x:Name="lblCitta" Content="Città" HorizontalAlignment="Left" Margin="222,119,0,0" VerticalAlignment="Top" Width="39"/>
+                            <Label x:Name="lblProvincia" Content="Provincia" HorizontalAlignment="Left" Margin="378,119,-113,0" VerticalAlignment="Top" Width="59"/>
+                            <Label x:Name="lblTelefono" Content="Telefono" HorizontalAlignment="Left" Margin="10,166,0,0" VerticalAlignment="Top" Width="101"/>
+                            <Label x:Name="lblPubblicita" Content="Pubblicita" HorizontalAlignment="Left" Margin="10,194,0,0" VerticalAlignment="Top" Width="101"/>
+                            <TextBox x:Name="txtID" HorizontalAlignment="Left" Height="23" Margin="36,19,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75"/>
+                            <TextBox x:Name="txtNome" HorizontalAlignment="Left" Height="23" Margin="71,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                            <TextBox x:Name="txtCognome" HorizontalAlignment="Left" Height="23" Margin="266,82,-52,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="110"/>
+                            <TextBox x:Name="txtIndirizzo" HorizontalAlignment="Left" Height="23" Margin="71,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                            <TextBox x:Name="txtCitta" HorizontalAlignment="Left" Height="23" Margin="266,122,-52,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="110"/>
+                            <TextBox x:Name="txtTelefono" HorizontalAlignment="Left" Height="23" Margin="116,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                            <TextBox x:Name="txtPubblicita" HorizontalAlignment="Left" Height="23" Margin="116,197,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                            <TextBox x:Name="txtProvincia" HorizontalAlignment="Left" Height="23" Margin="437,122,-153,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40"/>
+                            <Label x:Name="lblTelefono_Copy" Content="Data di nascita" HorizontalAlignment="Left" Margin="266,166,-43,0" VerticalAlignment="Top" Width="101"/>
+                            <DatePicker x:Name="dateNascita" HorizontalAlignment="Left" Margin="378,166,-198,0" VerticalAlignment="Top" SelectedDateChanged="datePagamento_SelectedDateChanged"/>
+                            <CheckBox x:Name="chkCompleanno"  Content="Festeggia compleanno" HorizontalAlignment="Left" Margin="266,200,0,0" VerticalAlignment="Top" IsChecked="True"/>
+
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox x:Name="Rapporto_utenti" Header="Rapporto utente" HorizontalAlignment="Left" Margin="10,366,0,0" VerticalAlignment="Top" Height="256" Width="610">
+                        <Grid HorizontalAlignment="Left" Height="252" Margin="4,-6,-2,-12" VerticalAlignment="Top" Width="596">
+                            <Label x:Name="label" Content="Data pagamento" HorizontalAlignment="Left" Margin="10,77,0,0" VerticalAlignment="Top" Width="105"/>
+                            <DatePicker x:Name="datePagamento" HorizontalAlignment="Left" Margin="120,78,0,0" VerticalAlignment="Top" SelectedDateChanged="datePagamento_SelectedDateChanged"/>
+                            <Label x:Name="label_Copy" Content="Data scadenza iscrizione" HorizontalAlignment="Left" Margin="290,77,0,0" VerticalAlignment="Top" Width="149"/>
+                            <DatePicker x:Name="dateScadenza" HorizontalAlignment="Left" Margin="439,78,0,0" VerticalAlignment="Top"/>
+                            <Label x:Name="label_Copy1" Content="Data certificato&#xA;medico" HorizontalAlignment="Left" Margin="10,107,0,0" VerticalAlignment="Top" Width="93"/>
+                            <DatePicker x:Name="dateCertificato" HorizontalAlignment="Left" Margin="120,116,0,0" VerticalAlignment="Top" SelectedDateChanged="dateCertificato_SelectedDateChanged"/>
+                            <Label x:Name="label_Copy2" Content="Data scadenza certificato&#xA;medico" HorizontalAlignment="Left" Margin="290,107,0,0" VerticalAlignment="Top" Width="149"/>
+                            <DatePicker x:Name="dateScadCertificato" HorizontalAlignment="Left" Margin="439,116,0,0" VerticalAlignment="Top"/>
+                            <Label x:Name="label_Copy3" Content="Note" HorizontalAlignment="Left" Margin="10,196,0,0" VerticalAlignment="Top" Width="88"/>
+                            <TextBox x:Name="txtNote" HorizontalAlignment="Left" Height="46" Margin="120,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144"/>
+                            <Label x:Name="label_Copy4" Content="Tipo iscrizione" HorizontalAlignment="Left" Margin="10,28,0,0" VerticalAlignment="Top" Width="88"/>
+                            <ComboBox x:Name="cmbTipoIscrizione" HorizontalAlignment="Left" Margin="103,28,0,0" VerticalAlignment="Top" Width="144" SelectionChanged="cmbTipoIscrizione_SelectionChanged"/>
+                            <Label x:Name="label_Copy5" Content="Extra" HorizontalAlignment="Left" Margin="300,196,0,0" VerticalAlignment="Top" Width="46"/>
+                            <TextBox x:Name="txtExtra" HorizontalAlignment="Left" Height="26" Margin="351,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
+                            <Label x:Name="label_Copy6" Content="Data iscrizione" HorizontalAlignment="Left" Margin="313,25,0,0" VerticalAlignment="Top" Width="88"/>
+                            <DatePicker x:Name="dateIscrizione" HorizontalAlignment="Left" Margin="406,26,0,0" VerticalAlignment="Top"/>
+                            <Label x:Name="lblInfo" HorizontalAlignment="Left" Margin="439,196,0,0" VerticalAlignment="Top" Width="144" Height="46" Content=""/>
+                            <Label x:Name="label_Copy7" Content="Data iscrizione &#xA;annuale" HorizontalAlignment="Left" Margin="10,145,0,0" VerticalAlignment="Top" Width="93" Height="42"/>
+                            <DatePicker x:Name="dateAnnuale" HorizontalAlignment="Left" Margin="120,154,0,0" VerticalAlignment="Top" SelectedDateChanged="dateAnnuale_SelectedDateChanged" />
+                            <Label x:Name="label_Copy8" Content="Data scadenza iscrizione &#xA;annuale" HorizontalAlignment="Left" Margin="290,145,0,0" VerticalAlignment="Top" Width="149"/>
+                            <DatePicker x:Name="dateScadAnnuale" HorizontalAlignment="Left" Margin="439,154,0,0" VerticalAlignment="Top" />
+                        </Grid>
+                    </GroupBox>
+                    <Button x:Name="btnInserisci" Content="Inserisci" HorizontalAlignment="Left" Margin="360,10,0,0" VerticalAlignment="Top" Width="65" Height="40" Click="btnInserisci_Click"/>
+                    <GroupBox x:Name="Cerca" Header="Cerca" HorizontalAlignment="Left" Margin="10,7,0,0" VerticalAlignment="Top" Height="93" Width="335">
+                        <Grid x:Name="grdCerca" HorizontalAlignment="Left" Height="83" VerticalAlignment="Top" Width="325" Margin="0,0,-2,-12">
+                            <TextBox x:Name="txtCercaNome" HorizontalAlignment="Left" Height="23" Margin="77,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="138"/>
+                            <Label x:Name="label1" Content="Nome" HorizontalAlignment="Left" Margin="10,7,0,0" VerticalAlignment="Top"/>
+                            <TextBox x:Name="txtCercaCognome" HorizontalAlignment="Left" Height="23" Margin="77,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="138"/>
+                            <Button x:Name="btnCerca" Content="Cerca" HorizontalAlignment="Left" Margin="220,7,-91,0" VerticalAlignment="Top" Width="96" Height="57" Click="btnCerca_Click"/>
+                            <Label x:Name="label1_Copy" Content="Cognome" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top"/>
+                        </Grid>
+                    </GroupBox>
+                    <Button x:Name="btnAnnulla" Content="Annulla" HorizontalAlignment="Left" Margin="500,10,0,0" VerticalAlignment="Top" Width="62" Height="85" Click="btnAnnulla_Click"/>
+                    <Button x:Name="btnModifica" Content="Modifica" HorizontalAlignment="Left" Margin="360,55,0,0" VerticalAlignment="Top" Width="135" Height="40" Click="btnModifica_Click" />
+                    <Button x:Name="btnFatto" Content="Fatto" HorizontalAlignment="Left" Margin="430,10,0,0" VerticalAlignment="Top" Width="65" Height="40" Click="btnFatto_Click" />
+                    <Button x:Name="btnElimina" Content="Elimina" HorizontalAlignment="Left" Margin="567,10,0,0" VerticalAlignment="Top" Width="53" Height="85" Click="btnElimina_Click"/>
+                    <Button x:Name="btnRinnova" Content="Rinnova abbonamento / certificato" HorizontalAlignment="Left" Margin="625,10,0,0" VerticalAlignment="Top" Width="219" Height="85" Click="btnRinnova_Click"/>
+                    <GroupBox x:Name="grpDisattiva" Header="Disattiva&#xD;&#xA;" HorizontalAlignment="Left" Margin="627,105,0,0" VerticalAlignment="Top" Height="230" Width="217">
+                        <Grid x:Name="grdDisattiva" HorizontalAlignment="Left" Height="185" Margin="0,10,-2,-3" VerticalAlignment="Top" Width="207">
+                            <Button x:Name="btnDisattiva" Content="Disattiva manuale" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="187" Height="78" Click="btnDisattiva_Click"/>
+                            <DatePicker x:Name="dateDisattiva" HorizontalAlignment="Left" Margin="10,93,0,0" VerticalAlignment="Top" Width="187" Height="26"/>
+                            <Label x:Name="lblDisattiva" Content="" HorizontalAlignment="Left" Margin="10,149,0,0" VerticalAlignment="Top" Width="187"/>
+                        </Grid>
+                    </GroupBox>
+
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tabAvanzate" Header="Avanzate" >
+                <Grid x:Name="grdAvanzate" Background="#FFE5E5E5" Margin="10,0,-10,0">
+                    <GroupBox x:Name="grpGestioneAbbonamenti" Header="Gestione abbonamenti" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="611" Width="384">
+                        <Grid HorizontalAlignment="Left" Height="591" Margin="10,10,-2,-12" VerticalAlignment="Top" Width="364">
+                            <Label x:Name="label4" Content="Nome " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                            <Label x:Name="label4_Copy" Content="Prezzo" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+                            <Label x:Name="label4_Copy2" Content="Giorni validità" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top"/>
+                            <Label x:Name="label4_Copy3" Content="Mesi validità" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top"/>
+                            <TextBox x:Name="txtAbbNome" HorizontalAlignment="Left" Height="23" Margin="121,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="233"/>
+                            <TextBox x:Name="txtAbbPrezzo" HorizontalAlignment="Left" Height="23" Margin="121,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="138"/>
+                            <TextBox x:Name="txtAbbGiorniVal" HorizontalAlignment="Left" Height="23" Margin="121,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="138"/>
+                            <TextBox x:Name="txtAbbMesiVal" HorizontalAlignment="Left" Height="23" Margin="121,137,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="138"/>
+                            <CheckBox x:Name="chkAbbPeriodico"  Content="E' periodico" HorizontalAlignment="Left" Margin="121,78,0,0" VerticalAlignment="Top" IsChecked="True" Click="chkAbbPeriodico_Click"/>
+                            <DataGrid x:Name="dtAbbonamenti" HorizontalAlignment="Left" Margin="10,177,0,0" VerticalAlignment="Top" Height="349" Width="344"  />
+                            <Button x:Name="btnAbbAggiungi" Content="Aggiungi" HorizontalAlignment="Left" Margin="15,531,0,0" VerticalAlignment="Top" Width="78" Height="34" Click="btnAbbAggiungi_Click" />
+                            <Button x:Name="btnAbbElimina" Content="Elimina" HorizontalAlignment="Left" Margin="276,531,0,0" VerticalAlignment="Top" Width="78" Height="34" Click="btnAbbElimina_Click" />
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox x:Name="grpStat" Header="Statistiche" HorizontalAlignment="Left" Margin="399,10,0,0" VerticalAlignment="Top" Height="611" Width="565">
+                        <Grid HorizontalAlignment="Left" Height="601" Margin="10,0,-2,-12" VerticalAlignment="Top" Width="545">
+                            <DatePicker x:Name="dateDa" HorizontalAlignment="Left" Margin="41,11,0,0" VerticalAlignment="Top"/>
+                            <DatePicker x:Name="dateFino" HorizontalAlignment="Left" Margin="41,38,0,0" VerticalAlignment="Top"/>
+                            <Label x:Name="label3" Content="Da:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="26"/>
+                            <Label x:Name="label3_Copy" Content="A:" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" Width="26"/>
+                            <Button x:Name="btnCalcola" Content="Calcola" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="190,10,0,0" Height="53" Click="btnCalcola_Click"/>
+
+                            <chartingToolkit:Chart x:Name="chartDati" HorizontalAlignment="Left" Margin="10,68,0,0" Title="Abbonamenti effettuati: " VerticalAlignment="Top" Width="525" Height="278">
+                                <chartingToolkit:ColumnSeries Title="Abbonamenti"  DependentValuePath="Value" IndependentValuePath="Key" ItemsSource="{Binding}" />
+                            </chartingToolkit:Chart>
+                            <chartingToolkit:Chart x:Name="chartIncassi" HorizontalAlignment="Left" Margin="10,351,0,0" Title="Incassi Totali: " VerticalAlignment="Top" Height="229" Width="525">
+                                <chartingToolkit:ColumnSeries Title="Incassi" DependentValuePath="Value" IndependentValuePath="Key" ItemsSource="{Binding}" />
+                            </chartingToolkit:Chart>
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>

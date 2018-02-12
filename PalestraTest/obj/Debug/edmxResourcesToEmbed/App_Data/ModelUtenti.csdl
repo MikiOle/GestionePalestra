@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Utenti_PalestraModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="RapportoCliente">
+    <Key>
+      <PropertyRef Name="ID_Tessera" />
+    </Key>
+    <Property Name="ID_Tessera" Type="String" MaxLength="8" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Data_Iscrizione" Type="DateTime" Precision="0" />
+    <Property Name="Data_Pagamento" Type="DateTime" Precision="0" />
+    <Property Name="Data_Scadenza" Type="DateTime" Precision="0" />
+    <Property Name="Data_Certificato" Type="DateTime" Precision="0" />
+    <Property Name="Data_Scadenza_Certificato" Type="DateTime" Precision="0" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Abilitato" Type="Boolean" Nullable="false" />
+    <Property Name="Tipo_Iscrizione" Type="String" MaxLength="26" FixedLength="true" Unicode="true" />
+    <Property Name="Extra" Type="String" MaxLength="7" FixedLength="true" Unicode="true" />
+    <Property Name="N_EntrateRimanenti" Type="Int32" />
+    <Property Name="Data_Annuale" Type="DateTime" Precision="0" />
+    <Property Name="Data_AnnualeScadenza" Type="DateTime" Precision="0" />
+    <Property Name="Data_Disattivazione" Type="DateTime" Precision="0" />
+    <Property Name="Codice_disattivazione" Type="Int32" />
+    <NavigationProperty Name="Utenti" Relationship="Self.FK__RapportoC__ID_Te__25869641" FromRole="RapportoClienti" ToRole="Utenti" />
+  </EntityType>
+  <EntityType Name="Utente">
+    <Key>
+      <PropertyRef Name="ID_Tessera" />
+    </Key>
+    <Property Name="ID_Tessera" Type="String" MaxLength="8" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Nome" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Cognome" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Indirizzo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Citta" Type="String" MaxLength="25" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Provincia" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+    <Property Name="Telefono" Type="String" MaxLength="11" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Pubblicita" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="RapportoClienti" Relationship="Self.FK__RapportoC__ID_Te__25869641" FromRole="Utenti" ToRole="RapportoClienti" />
+  </EntityType>
+  <Association Name="FK__RapportoC__ID_Te__25869641">
+    <End Role="Utenti" Type="Utenti_PalestraModel.Utente" Multiplicity="1" />
+    <End Role="RapportoClienti" Type="Utenti_PalestraModel.RapportoCliente" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Utenti">
+        <PropertyRef Name="ID_Tessera" />
+      </Principal>
+      <Dependent Role="RapportoClienti">
+        <PropertyRef Name="ID_Tessera" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="UtentiPalestra" annotation:LazyLoadingEnabled="false">
+    <EntitySet Name="RapportoClienti" EntityType="Utenti_PalestraModel.RapportoCliente" />
+    <EntitySet Name="Utenti" EntityType="Utenti_PalestraModel.Utente" />
+    <AssociationSet Name="FK__RapportoC__ID_Te__25869641" Association="Self.FK__RapportoC__ID_Te__25869641">
+      <End Role="Utenti" EntitySet="Utenti" />
+      <End Role="RapportoClienti" EntitySet="RapportoClienti" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="UtentiPalestraModelStoreContainer" CdmEntityContainer="UtentiPalestraEntities">
+    <EntitySetMapping Name="Casi_disattivazione_abbonamento">
+      <EntityTypeMapping TypeName="UtentiPalestraModel.Casi_disattivazione_abbonamento">
+        <MappingFragment StoreEntitySet="Casi_disattivazione_abbonamento">
+          <ScalarProperty Name="motivo" ColumnName="motivo" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PrezziAbbonamenti">
+      <EntityTypeMapping TypeName="UtentiPalestraModel.PrezziAbbonamenti">
+        <MappingFragment StoreEntitySet="PrezziAbbonamenti">
+          <ScalarProperty Name="validita_mesi" ColumnName="validita_mesi" />
+          <ScalarProperty Name="validita_giorni" ColumnName="validita_giorni" />
+          <ScalarProperty Name="is_periodico" ColumnName="is_periodico" />
+          <ScalarProperty Name="prezzo" ColumnName="prezzo" />
+          <ScalarProperty Name="titolo" ColumnName="titolo" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RapportoClienti">
+      <EntityTypeMapping TypeName="UtentiPalestraModel.RapportoCliente">
+        <MappingFragment StoreEntitySet="RapportoClienti">
+          <ScalarProperty Name="Codice_disattivazione" ColumnName="Codice_disattivazione" />
+          <ScalarProperty Name="Data_Disattivazione" ColumnName="Data_Disattivazione" />
+          <ScalarProperty Name="Data_AnnualeScadenza" ColumnName="Data_AnnualeScadenza" />
+          <ScalarProperty Name="Data_Annuale" ColumnName="Data_Annuale" />
+          <ScalarProperty Name="N_EntrateRimanenti" ColumnName="N_EntrateRimanenti" />
+          <ScalarProperty Name="Extra" ColumnName="Extra" />
+          <ScalarProperty Name="Tipo_Iscrizione" ColumnName="Tipo_Iscrizione" />
+          <ScalarProperty Name="Abilitato" ColumnName="Abilitato" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="Data_Scadenza_Certificato" ColumnName="Data_Scadenza_Certificato" />
+          <ScalarProperty Name="Data_Certificato" ColumnName="Data_Certificato" />
+          <ScalarProperty Name="Data_Scadenza" ColumnName="Data_Scadenza" />
+          <ScalarProperty Name="Data_Pagamento" ColumnName="Data_Pagamento" />
+          <ScalarProperty Name="Data_Iscrizione" ColumnName="Data_Iscrizione" />
+          <ScalarProperty Name="ID_Tessera" ColumnName="ID_Tessera" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Utenti">
+      <EntityTypeMapping TypeName="UtentiPalestraModel.Utente">
+        <MappingFragment StoreEntitySet="Utenti">
+          <ScalarProperty Name="FesteggiaCompleanno" ColumnName="FesteggiaCompleanno" />
+          <ScalarProperty Name="DataNascita" ColumnName="DataNascita" />
+          <ScalarProperty Name="Pubblicita" ColumnName="Pubblicita" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+          <ScalarProperty Name="Citta" ColumnName="Citta" />
+          <ScalarProperty Name="Indirizzo" ColumnName="Indirizzo" />
+          <ScalarProperty Name="Cognome" ColumnName="Cognome" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="ID_Tessera" ColumnName="ID_Tessera" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

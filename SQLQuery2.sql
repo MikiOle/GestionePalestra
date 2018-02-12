@@ -1,0 +1,1 @@
+﻿SELECT * FROM Utenti INNER JOIN RapportoClienti ON  WHERE N_EntrateRimanenti = 0 OR DATEDIFF(DAY, Data_Scadenza, GETDATE()) < 0
