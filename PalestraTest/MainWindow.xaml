@@ -54,7 +54,7 @@
                     </GroupBox>
                     <GroupBox x:Name="Rapporto_utenti" Header="Rapporto utente" HorizontalAlignment="Left" Margin="10,366,0,0" VerticalAlignment="Top" Height="256" Width="610">
                         <Grid HorizontalAlignment="Left" Height="252" Margin="4,-6,-2,-12" VerticalAlignment="Top" Width="596">
-                            <Label x:Name="label" Content="Data pagamento" HorizontalAlignment="Left" Margin="10,77,0,0" VerticalAlignment="Top" Width="105"/>
+                            <Button x:Name="btnAnnullaAbbon" Margin="252,28,296,202" Content="Annulla" Click="btnAnnullaAbbon_Click" /><Label x:Name="label" Content="Data pagamento" HorizontalAlignment="Left" Margin="10,77,0,0" VerticalAlignment="Top" Width="105"/>
                             <DatePicker x:Name="datePagamento" HorizontalAlignment="Left" Margin="120,78,0,0" VerticalAlignment="Top" SelectedDateChanged="datePagamento_SelectedDateChanged"/>
                             <Label x:Name="label_Copy" Content="Data scadenza iscrizione" HorizontalAlignment="Left" Margin="290,77,0,0" VerticalAlignment="Top" Width="149"/>
                             <DatePicker x:Name="dateScadenza" HorizontalAlignment="Left" Margin="439,78,0,0" VerticalAlignment="Top"/>

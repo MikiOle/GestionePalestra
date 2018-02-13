@@ -78,14 +78,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PalestraTest.exe" size="726016">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PalestraTest.exe" size="727040">
       <assemblyIdentity name="PalestraTest" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>cCUpgitbD4PC1RsWJkj5KPjgGXvN5336qAtv2CmvnbA=</dsig:DigestValue>
+        <dsig:DigestValue>tpm7IEAcnu5Q7JItOmKDOx0guY6d3xiSPOXPQbREeBA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -131,7 +131,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>lzDkiFVkcHVD9TvXtTjP6Uny7YVYN3ZP+2BqwuF9RFI=</dsig:DigestValue>
+      <dsig:DigestValue>Tb9pYPf89kG0jDKfRICpcEeAk835gcOcS8V4g6YlaHw=</dsig:DigestValue>
     </hash>
   </file>
   <file name="App_Data\UtentiPalestra_log.ldf" size="8388608" writeableType="applicationData">
@@ -140,7 +140,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>LlQ77EL/8UNbX77ePx1K/9p1FVqfiH2KHNy0ACwbqFQ=</dsig:DigestValue>
+      <dsig:DigestValue>Hj7Nn++Z9dafdV5WM+TfTwVhEr0UGF5DNoOQbzRDw9w=</dsig:DigestValue>
     </hash>
   </file>
   <file name="App_Data\UtentiPalestraModel.Context.tt" size="22943">
