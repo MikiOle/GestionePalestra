@@ -322,7 +322,10 @@ namespace PalestraTest
                 {
                     //lblInfo.Foreground = Brushes.LightGreen;                        
                     if (utente.RapportoClienti.N_EntrateRimanenti != null)
-                        lblInfo.Content = "ABILITATO! \nEntrate rimaste: " + utente.RapportoClienti.N_EntrateRimanenti;
+                    {
+                        lblInfo.Content = "ABILITATO! \nEntrate rimaste: ";
+                        txtGiornateRimanenti.Text = utente.RapportoClienti.N_EntrateRimanenti.ToString();
+                    }
                     else
                         lblInfo.Content = "ABILITATO!";
 
@@ -411,13 +414,18 @@ namespace PalestraTest
                 utente.FesteggiaCompleanno = (bool)chkCompleanno.IsChecked;
 
                 //aggiorna le giornate rimanenti nel caso la data pagamento vari da quella precedente 
-                if (iscrizioneSel != null && utente.RapportoClienti.Data_Pagamento != datePagamento.SelectedDate)
+                if (iscrizioneSel != null)
                 {
                     utente.RapportoClienti.Tipo_Iscrizione = iscrizioneSel.id;
                     utente.RapportoClienti.Data_Pagamento = datePagamento.SelectedDate;
                     utente.RapportoClienti.Abilitato = true;
 
-                    if (!iscrizioneSel.is_periodico) {
+                    //se è stato cambiato manualmente il numero di entrate
+                    if(int.TryParse(txtGiornateRimanenti.Text, out int giornateRim) && utente.RapportoClienti.N_EntrateRimanenti != null && utente.RapportoClienti.N_EntrateRimanenti != giornateRim )
+                    {
+                        utente.RapportoClienti.N_EntrateRimanenti = giornateRim;
+                    }
+                    else if (!iscrizioneSel.is_periodico) {
                         utente.RapportoClienti.N_EntrateRimanenti = iscrizioneSel.validita_giorni;
                         utente.RapportoClienti.Data_Scadenza = null;
                     }    
@@ -428,6 +436,7 @@ namespace PalestraTest
                 }
                 else
                 {
+                    utente.RapportoClienti.Tipo_Iscrizione = null;
                     utente.RapportoClienti.Abilitato = false;
                 }
 
@@ -527,53 +536,53 @@ namespace PalestraTest
 
         private void RinnovaAbbonamento()
         {
-            try
-            {
-                LogInfo("Modifica dati abbonamento utente ID: '" + txtID.Text.Trim() + "'");
-                UtentiPalestraEntities ent = new UtentiPalestraEntities();
-                var rapporto = ent.RapportoClienti.FirstOrDefault(a => a.ID_Tessera == txtID.Text.Trim());
-                PrezziAbbonamenti iscrizioneSel = ent.PrezziAbbonamenti.FirstOrDefault(a => a.id == (int)cmbTipoIscrizione.SelectedValue);
-                //aggiorna le giornate solo se viene selezionata un'opzione diversa da quella attuale
-                //quindi se per esempio ha 10 giornate, l'utente effettua 2 entrate, poi l'admin entra per modificare il certificato medico, non si avrà la modifica delle giornate
-                if (iscrizioneSel.id != rapporto.PrezziAbbonamenti.id)
-                {
-                    if (!iscrizioneSel.is_periodico)
-                        rapporto.N_EntrateRimanenti = iscrizioneSel.validita_giorni;
-                    else
-                        rapporto.N_EntrateRimanenti = null;
-                }
+            //try
+            //{
+            //    LogInfo("Modifica dati abbonamento utente ID: '" + txtID.Text.Trim() + "'");
+            //    UtentiPalestraEntities ent = new UtentiPalestraEntities();
+            //    var rapporto = ent.RapportoClienti.FirstOrDefault(a => a.ID_Tessera == txtID.Text.Trim());
+            //    PrezziAbbonamenti iscrizioneSel = ent.PrezziAbbonamenti.FirstOrDefault(a => a.id == (int)cmbTipoIscrizione.SelectedValue);
+            //    //aggiorna le giornate solo se viene selezionata un'opzione diversa da quella attuale
+            //    //quindi se per esempio ha 10 giornate, l'utente effettua 2 entrate, poi l'admin entra per modificare il certificato medico, non si avrà la modifica delle giornate
+            //    if (iscrizioneSel.id != rapporto.PrezziAbbonamenti.id)
+            //    {
+            //        if (!iscrizioneSel.is_periodico)
+            //            rapporto.N_EntrateRimanenti = iscrizioneSel.validita_giorni;
+            //        else
+            //            rapporto.N_EntrateRimanenti = null;
+            //    }
 
-                rapporto.Data_Iscrizione = dateIscrizione.SelectedDate;
-                rapporto.Data_Pagamento = datePagamento.SelectedDate;
-                rapporto.Data_Scadenza = dateScadenza.SelectedDate;
-                rapporto.Data_Annuale = dateAnnuale.SelectedDate;
-                rapporto.Data_AnnualeScadenza = dateScadAnnuale.SelectedDate;
-                rapporto.Data_Certificato = dateCertificato.SelectedDate;
-                rapporto.Data_Scadenza_Certificato = dateScadCertificato.SelectedDate;
-                rapporto.Note = txtNote.Text.Trim();
-                rapporto.Tipo_Iscrizione = iscrizioneSel.id;
-                rapporto.Abilitato = iscrizioneSel.titolo != "Nessuno" ? true : false;
-                rapporto.Extra = txtExtra.Text.Trim();
+            //    rapporto.Data_Iscrizione = dateIscrizione.SelectedDate;
+            //    rapporto.Data_Pagamento = datePagamento.SelectedDate;
+            //    rapporto.Data_Scadenza = dateScadenza.SelectedDate;
+            //    rapporto.Data_Annuale = dateAnnuale.SelectedDate;
+            //    rapporto.Data_AnnualeScadenza = dateScadAnnuale.SelectedDate;
+            //    rapporto.Data_Certificato = dateCertificato.SelectedDate;
+            //    rapporto.Data_Scadenza_Certificato = dateScadCertificato.SelectedDate;
+            //    rapporto.Note = txtNote.Text.Trim();
+            //    rapporto.Tipo_Iscrizione = iscrizioneSel.id;
+            //    rapporto.Abilitato = iscrizioneSel.titolo != "Nessuno" ? true : false;
+            //    rapporto.Extra = txtExtra.Text.Trim();
 
-                //se viene selezionata una opzione PERIODICA, il numero di lezioni si azzera perchè si passa ad un abbonamento PERIODICO
-                if (iscrizioneSel.is_periodico)
-                {
-                    rapporto.Data_Scadenza = dateScadenza.SelectedDate;
-                    rapporto.N_EntrateRimanenti = null;
-                }
+            //    //se viene selezionata una opzione PERIODICA, il numero di lezioni si azzera perchè si passa ad un abbonamento PERIODICO
+            //    if (iscrizioneSel.is_periodico)
+            //    {
+            //        rapporto.Data_Scadenza = dateScadenza.SelectedDate;
+            //        rapporto.N_EntrateRimanenti = null;
+            //    }
 
-                ent.SaveChanges();
-            }
-            catch (Exception ecc)
-            {
-                LogError(getInnerException(ecc).Message);
-                MessageBox.Show(ecc.Message, "ERRORE!", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            finally
-            {
-                //chiude infine la connessione
+            //    ent.SaveChanges();
+            //}
+            //catch (Exception ecc)
+            //{
+            //    LogError(getInnerException(ecc).Message);
+            //    MessageBox.Show(ecc.Message, "ERRORE!", MessageBoxButton.OK, MessageBoxImage.Error);
+            //}
+            //finally
+            //{
+            //    //chiude infine la connessione
 
-            }
+            //}
         }
 
         #endregion
@@ -843,6 +852,7 @@ namespace PalestraTest
             dateCertificato.IsEnabled = false;
             cmbTipoIscrizione.IsEnabled = false;
             dateAnnuale.IsEnabled = false;
+            txtGiornateRimanenti.IsEnabled = false;
         }
 
         private void Rinnovo()
@@ -870,6 +880,7 @@ namespace PalestraTest
             dateCertificato.IsEnabled = true;
             cmbTipoIscrizione.IsEnabled = true;
             dateAnnuale.IsEnabled = true;
+            txtGiornateRimanenti.IsEnabled = true;
         }
 
         #endregion
@@ -938,8 +949,34 @@ namespace PalestraTest
             dateScadCertificato.SelectedDate = null;
             txtNote.Clear();
             txtExtra.Clear();
+            txtGiornateRimanenti.Clear();
 
             // flagInserimento = true; //ogni volta che viene effettuata la pulizia il comandi sono pronti per un altro inserimento
+        }
+
+        private void chkAbbPeriodico_Click(object sender, RoutedEventArgs e)
+        {
+            if (chkAbbPeriodico.IsChecked == true)
+            {
+                AbbonamentoPeriodicoCheck();
+            }
+            else
+            {
+                AbbonamentoNonPeriodicoCheck();
+            }
+        }
+
+        private void PulisciFormAbbonamenti()
+        {
+            txtAbbNome.Text = "";
+            txtAbbPrezzo.Text = "";
+            txtAbbMesiVal.Text = "";
+            txtAbbGiorniVal.Text = "";
+        }
+
+        private void btnAnnullaAbbon_Click(object sender, RoutedEventArgs e)
+        {
+            cmbTipoIscrizione.SelectedIndex = -1;
         }
 
         #endregion
@@ -1444,10 +1481,10 @@ namespace PalestraTest
         {
             UtentiPalestraEntities ent = new UtentiPalestraEntities();
             var selezioneAbbonamenti = dtAbbonamenti.SelectedItem;
-            var nome = selezioneAbbonamenti.GetType().GetProperty("Nome").GetValue(selezioneAbbonamenti, null);
+            int id = (int)selezioneAbbonamenti.GetType().GetProperty("id").GetValue(selezioneAbbonamenti, null);
             if (selezioneAbbonamenti == null) return;
 
-            List<Utente> utenteAbbonamentoSelezionato = ent.Utenti.Where(a => a.RapportoClienti.PrezziAbbonamenti.titolo.Equals(nome.ToString())).ToList();
+            List<Utente> utenteAbbonamentoSelezionato = ent.Utenti.Where(a => a.RapportoClienti.PrezziAbbonamenti.id == id).ToList();
             if(utenteAbbonamentoSelezionato.Count > 0)
             {
                 string utentiAbb = "";
@@ -1461,7 +1498,7 @@ namespace PalestraTest
 
             if (MessageBox.Show("Sei sicuro di voler eliminare l'abbonamento selezionato?", "Sei sicuro?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {  
-                PrezziAbbonamenti abbElim = ent.PrezziAbbonamenti.FirstOrDefault(a => a.titolo.Equals(nome.ToString()));
+                PrezziAbbonamenti abbElim = ent.PrezziAbbonamenti.FirstOrDefault(a => a.id == id);
 
                 ent.PrezziAbbonamenti.Remove(abbElim);
                 ent.SaveChanges();
@@ -1487,28 +1524,6 @@ namespace PalestraTest
 
         #endregion
 
-        private void chkAbbPeriodico_Click(object sender, RoutedEventArgs e)
-        {
-            if (chkAbbPeriodico.IsChecked == true)
-            {
-                AbbonamentoPeriodicoCheck();
-            } else
-            {
-                AbbonamentoNonPeriodicoCheck();
-            }
-        }
-
-        private void PulisciFormAbbonamenti()
-        {
-            txtAbbNome.Text = "";
-            txtAbbPrezzo.Text = "";
-            txtAbbMesiVal.Text = "";
-            txtAbbGiorniVal.Text = ""; 
-        }
-
-        private void btnAnnullaAbbon_Click(object sender, RoutedEventArgs e)
-        {
-            cmbTipoIscrizione.SelectedIndex = -1;
-        }
+       
     }
 }

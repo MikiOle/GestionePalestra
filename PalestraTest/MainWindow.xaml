@@ -54,7 +54,8 @@
                     </GroupBox>
                     <GroupBox x:Name="Rapporto_utenti" Header="Rapporto utente" HorizontalAlignment="Left" Margin="10,366,0,0" VerticalAlignment="Top" Height="256" Width="610">
                         <Grid HorizontalAlignment="Left" Height="252" Margin="4,-6,-2,-12" VerticalAlignment="Top" Width="596">
-                            <Button x:Name="btnAnnullaAbbon" Margin="252,28,296,202" Content="Annulla" Click="btnAnnullaAbbon_Click" /><Label x:Name="label" Content="Data pagamento" HorizontalAlignment="Left" Margin="10,77,0,0" VerticalAlignment="Top" Width="105"/>
+                            <Button x:Name="btnAnnullaAbbon" Margin="252,28,296,202" Content="Annulla" Click="btnAnnullaAbbon_Click" />
+                            <Label x:Name="label" Content="Data pagamento" HorizontalAlignment="Left" Margin="10,77,0,0" VerticalAlignment="Top" Width="105"/>
                             <DatePicker x:Name="datePagamento" HorizontalAlignment="Left" Margin="120,78,0,0" VerticalAlignment="Top" SelectedDateChanged="datePagamento_SelectedDateChanged"/>
                             <Label x:Name="label_Copy" Content="Data scadenza iscrizione" HorizontalAlignment="Left" Margin="290,77,0,0" VerticalAlignment="Top" Width="149"/>
                             <DatePicker x:Name="dateScadenza" HorizontalAlignment="Left" Margin="439,78,0,0" VerticalAlignment="Top"/>
@@ -70,11 +71,12 @@
                             <TextBox x:Name="txtExtra" HorizontalAlignment="Left" Height="26" Margin="351,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
                             <Label x:Name="label_Copy6" Content="Data iscrizione" HorizontalAlignment="Left" Margin="313,25,0,0" VerticalAlignment="Top" Width="88"/>
                             <DatePicker x:Name="dateIscrizione" HorizontalAlignment="Left" Margin="406,26,0,0" VerticalAlignment="Top"/>
-                            <Label x:Name="lblInfo" HorizontalAlignment="Left" Margin="439,196,0,0" VerticalAlignment="Top" Width="144" Height="46" Content=""/>
+                            <Label x:Name="lblInfo" HorizontalAlignment="Left" Margin="439,196,0,0" VerticalAlignment="Top" Width="111" Height="46" Content=""/>
                             <Label x:Name="label_Copy7" Content="Data iscrizione &#xA;annuale" HorizontalAlignment="Left" Margin="10,145,0,0" VerticalAlignment="Top" Width="93" Height="42"/>
                             <DatePicker x:Name="dateAnnuale" HorizontalAlignment="Left" Margin="120,154,0,0" VerticalAlignment="Top" SelectedDateChanged="dateAnnuale_SelectedDateChanged" />
                             <Label x:Name="label_Copy8" Content="Data scadenza iscrizione &#xA;annuale" HorizontalAlignment="Left" Margin="290,145,0,0" VerticalAlignment="Top" Width="149"/>
                             <DatePicker x:Name="dateScadAnnuale" HorizontalAlignment="Left" Margin="439,154,0,0" VerticalAlignment="Top" />
+                            <TextBox x:Name="txtGiornateRimanenti" HorizontalAlignment="Left" Height="26" Margin="555,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="28"/>
                         </Grid>
                     </GroupBox>
                     <Button x:Name="btnInserisci" Content="Inserisci" HorizontalAlignment="Left" Margin="360,10,0,0" VerticalAlignment="Top" Width="65" Height="40" Click="btnInserisci_Click"/>
